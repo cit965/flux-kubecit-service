@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubecit-service
+  namespace: wlb965
+spec:
+  selector:
+    matchLabels:
+      app: kubecit-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kubecit-service
+    spec:
+      containers:
+        - name: kubecit-service
+          image: chaoyue/kubecit-service:v1.0.0 #{"": "flux-system:kubecit-service"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubecit-web-service
+  namespace: wlb965
+spec:
+  selector:
+    matchLabels:
+      app: kubecit-web-service
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: kubecit-web-service
+    spec:
+      containers:
+        - name: kubecit-web-service
+          image: z627062293/cit965-frontend:v1.0.0
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubecit-service
+  namespace: wlb965
+spec:
+  selector:
+    app: kubecit-service
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubecit-web-service
+  namespace: wlb965
+spec:
+  selector:
+    app: kubecit-web-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
