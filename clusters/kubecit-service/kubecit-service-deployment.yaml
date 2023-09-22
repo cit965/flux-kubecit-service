@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
         - name: kubecit-web-service
-          image: z627062293/cit965-frontend:v1.0.0
+          image: chaoyue/kubecit-web:0.0.15
           ports:
             - containerPort: 80
 ---
