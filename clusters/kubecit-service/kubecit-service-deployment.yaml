@@ -13,6 +13,10 @@ spec:
       labels:
         app: kubecit-service
     spec:
+      volumes:
+        - name: kubecit-service-config
+          configMaps:
+            name: kubecit-service-config
       containers:
         - name: kubecit-service
           image: chaoyue/kubecit-service:1695362777-37f2899 #{"$imagepolicy": "flux-system:kubecit-service"}
@@ -21,6 +25,10 @@ spec:
             - name: http
               containerPort: 8000
               protocol: TCP
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/configs
+          
 ---
 apiVersion: apps/v1
 kind: Deployment
