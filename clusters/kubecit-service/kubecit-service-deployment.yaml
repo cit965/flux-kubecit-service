@@ -15,7 +15,7 @@ spec:
     spec:
       volumes:
         - name: kubecit-service-config
-          configMaps:
+          configMap:
             name: kubecit-service-config
       containers:
         - name: kubecit-service
@@ -26,7 +26,7 @@ spec:
               containerPort: 8000
               protocol: TCP
           volumeMounts:
-            - name: config-volume
+            - name: kubecit-service-config
               mountPath: /app/configs
           
 ---
