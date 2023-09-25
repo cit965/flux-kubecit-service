@@ -19,7 +19,7 @@ spec:
             name: kubecit-service-config
       containers:
         - name: kubecit-service
-          image: chaoyue/kubecit-service:1695606004-50405b1 #{"$imagepolicy": "flux-system:kubecit-service"}
+          image: chaoyue/kubecit-service:1695607362-020d646 #{"$imagepolicy": "flux-system:kubecit-service"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
