@@ -1,0 +1,9 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: kubecit-manage
+  namespace: wlb965
+spec:
+  image: chaoyue/kubecit-manage
+  interval: 5m0s
